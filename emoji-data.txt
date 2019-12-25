@@ -1,27 +1,3 @@
-# emoji-data.txt
-# Date: 2019-10-20, 14:06:35 GMT
-# © 2019 Unicode®, Inc.
-# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
-#
-# Emoji Data for UTS #51
-# Version: 13.0
-#
-# For documentation and usage, see http://www.unicode.org/reports/tr51
-#
-# Format: 
-# <codepoint(s)> ; <property> # <comments> 
-# Note: there is no guarantee as to the structure of whitespace or comments
-#
-# Characters and sequences are listed in code point order. Users should be shown a more natural order.
-# See the CLDR collation order for Emoji.
-
-
-# ================================================
-
-# All omitted code points have Emoji=No 
-# @missing: 0000..10FFFF  ; Emoji ; No
-
 0023          ; Emoji                # E0.0   [1] (#️)       number sign
 002A          ; Emoji                # E0.0   [1] (*️)       asterisk
 0030..0039    ; Emoji                # E0.0  [10] (0️..9️)    digit zero..digit nine
@@ -228,14 +204,6 @@
 1FAB0..1FAB6  ; Emoji                # E13.0  [7] (🪰..🪶)    fly..feather
 1FAC0..1FAC2  ; Emoji                # E13.0  [3] (🫀..🫂)    anatomical heart..people hugging
 1FAD0..1FAD6  ; Emoji                # E13.0  [7] (🫐..🫖)    blueberries..teapot
-
-# Total elements: 1367
-
-# ================================================
-
-# All omitted code points have Emoji_Presentation=No 
-# @missing: 0000..10FFFF  ; Emoji_Presentation ; No
-
 231A..231B    ; Emoji_Presentation   # E2.0   [2] (⌚..⌛)    watch..hourglass done
 23E9..23EC    ; Emoji_Presentation   # E2.0   [4] (⏩..⏬)    fast-forward button..fast down button
 23F0          ; Emoji_Presentation   # E2.0   [1] (⏰)       alarm clock
@@ -364,23 +332,7 @@
 1FAB0..1FAB6  ; Emoji_Presentation   # E13.0  [7] (🪰..🪶)    fly..feather
 1FAC0..1FAC2  ; Emoji_Presentation   # E13.0  [3] (🫀..🫂)    anatomical heart..people hugging
 1FAD0..1FAD6  ; Emoji_Presentation   # E13.0  [7] (🫐..🫖)    blueberries..teapot
-
-# Total elements: 1148
-
-# ================================================
-
-# All omitted code points have Emoji_Modifier=No 
-# @missing: 0000..10FFFF  ; Emoji_Modifier ; No
-
 1F3FB..1F3FF  ; Emoji_Modifier       # E2.0   [5] (🏻..🏿)    light skin tone..dark skin tone
-
-# Total elements: 5
-
-# ================================================
-
-# All omitted code points have Emoji_Modifier_Base=No 
-# @missing: 0000..10FFFF  ; Emoji_Modifier_Base ; No
-
 261D          ; Emoji_Modifier_Base  # E2.0   [1] (☝️)       index pointing up
 26F9          ; Emoji_Modifier_Base  # E2.0   [1] (⛹️)       person bouncing ball
 270A..270D    ; Emoji_Modifier_Base  # E2.0   [4] (✊..✍️)    raised fist..writing hand
@@ -422,14 +374,6 @@
 1F9BB         ; Emoji_Modifier_Base  # E12.1  [1] (🦻)       ear with hearing aid
 1F9CD..1F9CF  ; Emoji_Modifier_Base  # E12.1  [3] (🧍..🧏)    person standing..deaf person
 1F9D1..1F9DD  ; Emoji_Modifier_Base  # E5.0  [13] (🧑..🧝)    person..elf
-
-# Total elements: 121
-
-# ================================================
-
-# All omitted code points have Emoji_Component=No 
-# @missing: 0000..10FFFF  ; Emoji_Component ; No
-
 0023          ; Emoji_Component      # E0.0   [1] (#️)       number sign
 002A          ; Emoji_Component      # E0.0   [1] (*️)       asterisk
 0030..0039    ; Emoji_Component      # E0.0  [10] (0️..9️)    digit zero..digit nine
@@ -440,14 +384,6 @@ FE0F          ; Emoji_Component      # E0.0   [1] ()        VARIATION SELECTOR-1
 1F3FB..1F3FF  ; Emoji_Component      # E2.0   [5] (🏻..🏿)    light skin tone..dark skin tone
 1F9B0..1F9B3  ; Emoji_Component      # E11.0  [4] (🦰..🦳)    red hair..white hair
 E0020..E007F  ; Emoji_Component      # E0.0  [96] (󠀠..󠁿)      tag space..cancel tag
-
-# Total elements: 146
-
-# ================================================
-
-# All omitted code points have Extended_Pictographic=No 
-# @missing: 0000..10FFFF  ; Extended_Pictographic ; No
-
 00A9          ; Extended_Pictographic# E2.0   [1] (©️)       copyright
 00AE          ; Extended_Pictographic# E2.0   [1] (®️)       registered
 203C          ; Extended_Pictographic# E2.0   [1] (‼️)       double exclamation mark
@@ -761,7 +697,3 @@ E0020..E007F  ; Emoji_Component      # E0.0  [96] (󠀠..󠁿)      tag space..c
 1FAC3..1FACF  ; Extended_Pictographic# E0.0  [13] (🫃..🫏)    <reserved-1FAC3>..<reserved-1FACF>
 1FAD0..1FAD6  ; Extended_Pictographic# E13.0  [7] (🫐..🫖)    blueberries..teapot
 1FAD7..1FFFD  ; Extended_Pictographic# E0.0[1319] (🫗..🿽)    <reserved-1FAD7>..<reserved-1FFFD>
-
-# Total elements: 3793
-
-#EOF
