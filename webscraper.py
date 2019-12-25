@@ -14,4 +14,16 @@ reddit = praw.Reddit(client_id=client_id, \
     username=username, \
     password=password)
 
-subreddit = reddit.subreddit('emojipasta')
+def scrape_subreddit(sub):
+    subreddit = reddit.subreddit(sub)
+    top = subreddit.top(limit=500)
+
+    data = {"titles":[],"texts":[]}
+    for submission in top:
+        print(submission.title, submission.selftext)
+        data["titles"].append(submission.title)
+        data["texts"].append(submission.selftext)
+    return pd.DataFrame(data)
+
+df = scrape_subreddit("copypasta")
+df.to_csv("data.csv",index=False)
