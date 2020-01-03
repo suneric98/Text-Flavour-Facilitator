@@ -38,7 +38,7 @@ def scrape_subreddit_pushshift(sub, day = 10, size = "100"):
     data = {"titles":[], "texts":[]}
     hashedTitles = set()
     while day > 0:
-        time.sleep(2)
+        time.sleep(5)
         url = "https://api.pushshift.io/reddit/search/submission/?subreddit=" + sub + "&after=" + str(day) + "d&size=" + size
         resp = requests.get(url)
         jsonData = resp.json()["data"]
@@ -46,7 +46,7 @@ def scrape_subreddit_pushshift(sub, day = 10, size = "100"):
         for submission in jsonData:
             if "selftext" not in submission:
                 continue
-            if re.search(RE_EMOJI, submission["selftext"]) and submission["title"] not in hashedTitles:
+            if re.search(RE_EMOJI, submission["selftext"]) and submission["selftext"] not in hashedTitles:
                 data["titles"].append(submission["title"])
                 data["texts"].append(submission["selftext"])
                 hashedTitles.add(submission["title"])
@@ -57,5 +57,5 @@ def scrape_subreddit_pushshift(sub, day = 10, size = "100"):
     return pd.DataFrame(data)
 
 # df = scrape_subreddit("copypasta")
-df = scrape_subreddit_pushshift("copypasta", 50, "100")
+df = scrape_subreddit_pushshift("copypasta", 150, "100")
 df.to_csv("data2.csv",index=False)
