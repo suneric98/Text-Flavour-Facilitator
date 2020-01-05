@@ -5,34 +5,10 @@ import re
 import requests
 import json
 import time
+import emoji
 
-RE_EMOJI = re.compile(u'([\U00002600-\U000027BF])|([\U0001f300-\U0001f64F])|([\U0001f680-\U0001f6FF])')
-
-client_id = "YOUR CLIENT ID"
-client_secret = "SECRET"
-user_agent = "APP NAME"
-username = "USERNAME"
-password = "PASSWORD"
-
-reddit = praw.Reddit(client_id=client_id, \
-    client_secret=client_secret, \
-    user_agent=user_agent, \
-    username=username, \
-    password=password)
-
-def scrape_subreddit(sub):
-    subreddit = reddit.subreddit(sub)
-    top = subreddit.top(limit=500)
-
-    data = {"titles":[],"texts":[]}
-    count = 0
-    for submission in top:
-        if re.search(RE_EMOJI, submission.selftext):
-            data["titles"].append(submission.title)
-            data["texts"].append(submission.selftext)
-            count += 1
-    print("Amount of data gathered:{}".format(count))
-    return pd.DataFrame(data)
+RE_EMOJI = emoji.get_emoji_regexp()
+RE_WORDS = r"\w+"
 
 def scrape_subreddit_pushshift(sub, day = 10, size = "100"):
     data = {"titles":[], "texts":[]}
@@ -46,9 +22,10 @@ def scrape_subreddit_pushshift(sub, day = 10, size = "100"):
         for submission in jsonData:
             if "selftext" not in submission:
                 continue
-            if re.search(RE_EMOJI, submission["selftext"]) and submission["selftext"] not in hashedTitles:
+            selftext = submission["selftext"]
+            if re.search(RE_EMOJI, selftext) and selftext not in hashedTitles:
                 data["titles"].append(submission["title"])
-                data["texts"].append(submission["selftext"])
+                data["texts"].append(selftext)
                 hashedTitles.add(submission["title"])
                 count += 1
         day -= 1
@@ -56,6 +33,23 @@ def scrape_subreddit_pushshift(sub, day = 10, size = "100"):
     print("Total data size:{}".format(len(data["titles"])))
     return pd.DataFrame(data)
 
-# df = scrape_subreddit("copypasta")
-df = scrape_subreddit_pushshift("copypasta", 150, "100")
-df.to_csv("data2.csv",index=False)
+def clean_dataset(path):
+    data = pd.read_csv(path)
+    dropping = []
+    for i in range(len(data["texts"])):
+        text = data["texts"][i]
+        numWords = len(re.findall(RE_WORDS, text)) + 1
+        numEmojis = len(re.findall(RE_EMOJI, text)) + 1
+        ratio = numEmojis / numWords
+        if ratio > 3 or ratio < 0.05:
+            dropping.append(i)
+            # print(text)
+    for drop in dropping:
+        data = data.drop([drop], axis=0)
+    print("Total data size:{}".format(len(data["titles"])))
+    return data
+
+# df = scrape_subreddit_pushshift("copypasta", 150, "100")
+# df.to_csv("data3.csv",index=False)
+# df = clean_dataset("data2.csv")
+# df.to_csv("data3.csv", index=False)
